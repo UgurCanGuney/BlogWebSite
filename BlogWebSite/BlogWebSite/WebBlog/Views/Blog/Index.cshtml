@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BlogWebSite.Entities.Makale>
+@{
+    ViewBag.Title = "Index";
+}
+   
+<h2>"Blog Sayfası"</h2>
+
+@foreach (var item in Model)
+{
+    <div class="site-section">
+        <div class="container">
+            <div class="row" id="@item.Id">
+                <div class="col-lg-8 single-content">
+                    <h1 class="mb-4">
+                        @item.MakaleBaslik
+                    </h1>
+                    &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+                    <p>@item.Icerik</p>
+                    <hr />
+                    <div class="pt-2">
+                        @{
+                            Repositories.CategoryRepository rep = new Repositories.CategoryRepository();
+                            BlogWebSite.Entities.Category c = @rep.Listele().FirstOrDefault(z =>z.Id==item.CategoryId);
+                            <strong>Kategorisi : </strong><span>@c.CategoryName</span>
+                        }
+                    </div>
+                    <div class="pt-5">
+                        <p>Vakit ayırdğınız için <a href="#">Teşekkürler.</a></p>
+                    </div>
+                </div>
+                
+
+
+            </div>
+        </div>
+    </div>
+}
+ <div class="col-lg-3 ml-auto" id="blogList">
+        <div class="section-title">
+            <h2>Bütün Postlar</h2>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="trend-entry d-flex">
+                <div class="number align-self-start">@item.Id</div>
+                <div class="trend-contents">
+                    <h2><a href="#@item.Id">@item.MakaleBaslik</a></h2>
+
+                </div>
+            </div>
+        }
+    </div>
+

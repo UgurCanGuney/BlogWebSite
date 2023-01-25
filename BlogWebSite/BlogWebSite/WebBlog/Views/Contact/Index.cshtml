@@ -1,0 +1,78 @@
+﻿@model WebBlog.Models.FormModel
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+@using (Html.BeginForm("MailSender", "Contact", FormMethod.Post, new { @class = "well form-horizontal" }))
+{
+    <fieldset>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <legend>İletişim Formu</legend>
+
+        <div class="site-section bg-light">
+            <div class="col-lg-12">
+                <div class="section-title mb-5">
+                    <h2>En Kısa Sürede Dönüş Yapılacaktır</h2>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12 control-label">Ad Soyad</label>
+                    <div class="col-md-12 inputGroupContainer form-group">
+                        <div class="input-group">
+
+                            @Html.TextBoxFor(model => model.AdSoyad, new { @class = "form-control", placeholder = "Adınız Soyadınız" })
+                        </div>
+                       
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-12 control-label">Email</label>
+                    <div class="col-md-12 inputGroupContainer form-group">
+                        <div class="input-group">
+
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Email Adresiniz" })
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-12 control-label">Mesajınız</label>
+                    <div class="col-md-12 inputGroupContainer">
+                        <div class="input-group">
+                            @Html.TextAreaFor(model => model.Mesaj, new { @class = "form-control", placeholder = "Mesajınız", rows = "3" })
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"></label>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success">Gönder <span class="glyphicon glyphicon-send"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    </fieldset>
+
+}
+@if (ViewBag.msj != null)
+{
+
+<div class="alert alert-success" role="alert">
+    Mailiniz tarafıma ulaşmıştır.
+</div>
+}
+
+
+
+
+
+
+

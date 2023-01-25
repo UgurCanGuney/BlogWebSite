@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BlogWebSite.Entities.Category>
+@{
+    ViewBag.Title = "Add";
+}
+    
+
+<h2>Makale Ekleme</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <form action="/Makale/Add" method="post">
+
+            <select class="custom-select btn btn-secondary" id="inputGroupSelect01" name="Kategori">
+                <option selected>Kategori Seçiniz</option>
+                @foreach (var item in Model)
+                {
+                    <option value="@item.Id">@item.CategoryName</option>
+                }
+            </select>
+            <br />
+            <br />
+            <div class="form-group">
+                <h6 class="font-weight-bold">Makale Başlığı</h6>
+                <input type="text" class="form-control" name="Baslik">
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <h6 class="font-weight-bold">İçerik</h6>
+                    <textarea class="form-control" rows="3" name="Icerik" placeholder="Makale içeriğini yazınız."></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6 class="font-weight-bold">Yazar</h6>
+                <input type="text" class="form-control" name="Yazar">
+            </div><div class="form-group">
+                <h6 class="font-weight-bold">Tarih</h6>
+                <input type="text" class="form-control" name="Tarih" value="@DateTime.Now.ToShortDateString()" readonly>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿
+@model IEnumerable<BlogWebSite.Entities.Makale>
+@{
+    ViewBag.Title = "Index";
+}
+<h3>Makale Listesi</h3>
+<br />
+
+<a class="btn btn-primary" href="/Makale/Add">Makale Ekle</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Makale No</th>
+            <th scope="col">Makale Başlığı</th>
+            <th scope="col">Yayımlama Tarihi</th>
+            <th scope="col">Yazarı</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var makale in Model)
+        {
+            <tr>
+                <th scope="row">@makale.Id</th>
+                <td>@makale.MakaleBaslik</td>
+                <td>@makale.Tarih.ToShortDateString()</td>
+                <td>@makale.Yazar</td>
+             
+                <td>
+                    <a class="btn btn-success btn-sm" href="/Makale/Edit?id=@makale.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="/Makale/Delete?id=@makale.Id">Delete</a>
+                    <a class="btn btn-info btn-sm" href="/Makale/Show?id=@makale.Id">Oku</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
